@@ -27,9 +27,9 @@ This plugin allows to execute a jenkins job inside [`Hyper_`](https://hyper.sh) 
 - [hyper-commons-plugin](https://github.com/jenkinsci/hyper-commons-plugin)
 - Hyper_ credential (get from https://console.hyper.sh)
 - Jenkins Server should have `public ip`
-- build image should contain `wget` and `java`
-  - `wget`: download slave.jar from jenkins master with wget
-  - `java`: run slave agent(slave.jar) to connect Jenkins master through JNLP
+- build image should contain `wget`/`curl` and `java`
+  - `wget`/`curl`(optional): download slave.jar from jenkins master. This ensures that slave agent version matched with the master. Download will be skipped when wget/curl is missing.
+  - `java`(required): run slave agent(slave.jar) to connect Jenkins master through JNLP.
 
 # Usage
 
@@ -58,7 +58,7 @@ Manage Jenkins -> Configure System -> Hypercli Install
 
 ### Job Configuration
 
-Select build image  
+Select build image(`Recommended Container Size: >=S2` )  
 ![](image/job-config-general.png)
 
 Add build step  

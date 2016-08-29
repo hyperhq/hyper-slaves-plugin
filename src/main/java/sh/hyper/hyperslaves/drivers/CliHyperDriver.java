@@ -71,9 +71,10 @@ public class CliHyperDriver implements ContainerDriver {
     @Override
     public ContainerInstance createAndLaunchSlaveContainer(final SlaveComputer computer, Launcher launcher, String image, String size) throws IOException, InterruptedException {
         String sizeFlag = "--size=" + size;
-        String rootUrl = Jenkins.getActiveInstance().getRootUrl();
-        String downloadSlaveJarCmd = "wget " + rootUrl + "/jnlpJars/slave.jar -O slave.jar";
-        String jnlpConnectCmd = "java -jar slave.jar " + "-jnlpUrl " + rootUrl + "/" + computer.getUrl() + "/slave-agent.jnlp " + "-secret " + computer.getJnlpMac();
+        String rootUrl = Jenkins.getInstance().getRootUrl();
+        String jenkinsUrl = rootUrl + "/jnlpJars/slave.jar";
+        String downloadSlaveJarCmd = String.format("which wget >/dev/null 2>&1 && wget %s -O slave.jar || (which curl && curl %s -O || echo skip download slave.jar)", jenkinsUrl, jenkinsUrl);
+        String jnlpConnectCmd = String.format("java -jar slave.jar -jnlpUrl %s/%s/slave-agent.jnlp -secret %s", rootUrl, computer.getUrl(), computer.getJnlpMac());
         String startCmd = "/bin/sh -c '" + downloadSlaveJarCmd + " ; " + jnlpConnectCmd + "'";
         ArgumentListBuilder args = new ArgumentListBuilder()
                 .add("run", "-d")
