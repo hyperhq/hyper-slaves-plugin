@@ -28,8 +28,11 @@ import hudson.Extension;
 import hudson.Launcher;
 import hudson.model.Descriptor;
 import hudson.model.TaskListener;
-import sh.hyper.hyperslaves.spi.ContainerDriver;
+import hudson.util.ListBoxModel;
+import hudson.util.ListBoxModel.Option;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.QueryParameter;
+import sh.hyper.hyperslaves.spi.ContainerDriver;
 
 import java.io.IOException;
 
@@ -84,6 +87,21 @@ public class ImageIdContainerDefinition extends ContainerDefinition {
         @Override
         public String getDisplayName() {
             return "Docker image";
+        }
+
+        public ListBoxModel doFillSizeItems(@QueryParameter String size) {
+            return new ListBoxModel(
+                    new Option("S1 $0.0000004/sec ($0.00144/hour): 64MB Mem, 1 CPU Core, 10GB Disk", "s1", size.matches("s1")),
+                    new Option("S2 $0.0000006/sec ($0.00216/hour): 128MB Mem, 1 CPU Core, 10GB Disk", "s2", size.matches("s2")),
+                    new Option("S3 $0.000001/sec ($0.0036/hour): 256MB Mem, 1 CPU Core, 10GB Disk", "s3", size.matches("s3")),
+                    new Option("S4 $0.000002/sec ($0.0072/hour): 512MB Mem, 1 CPU Core, 10GB Disk", "s4", size.matches("s4")),
+                    new Option("M1 $0.000004/sec ($0.0144/hour): 1GB Mem, 1 CPU Core, 10GB Disk", "m1", size.matches("m1")),
+                    new Option("M2 $0.000008/sec ($0.0288/hour): 2GB Mem, 2 CPU Core, 10GB Disk", "m2", size.matches("m2")),
+                    new Option("M3 $0.000015/sec ($0.054/hour): 4GB Mem, 2 CPU Core, 10GB Disk", "m3", size.matches("m3")),
+                    new Option("L1 $0.00003/sec ($0.108/hour): 4GB Mem, 4 CPU Core, 10GB Disk", "l1", size.matches("l1")),
+                    new Option("L2 $0.00006/sec ($0.216/hour): 8GB Mem, 4 CPU Core, 10GB Disk", "l2", size.matches("l2")),
+                    new Option("L3 $0.00012/sec ($0.432/hour): 16GB Mem, 8 CPU Core, 10GB Disk", "l3", size.matches("l3"))
+            );
         }
     }
 }

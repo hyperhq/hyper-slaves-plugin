@@ -27,23 +27,12 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
 
     <f:entry title="Docker Image" field="image">
-      <f:textbox default="jenkinsci/slave"/>
+        <f:textbox default="jenkinsci/slave"/>
     </f:entry>
 
-  <f:entry name="size" title="Container Size" field="size">
-    <select name="size">
-      <option value="s1">S1 (1cpu...64MB......$0.0000004/sec)</option>
-      <option value="s2">S2 (1cpu...128MB.....$0.0000006/sec)</option>
-      <option value="s3">S3 (1cpu...256MB.....$0.000001/sec)</option>
-      <option value="s4">S4 (1cpu...512MB.....$0.000002/sec)</option>
-      <option value="m1">M1(1cpu...1GB.........$0.000004/sec)</option>
-      <option value="m2">M2(2cpu...2GB.........$0.000008/sec)</option>
-      <option value="m3">M3(2cpu...4GB.........$0.000015/sec)</option>
-      <option value="l1">L1   (4cpu...4GB.........$0.00003/sec)</option>
-      <option value="l2">L2   (4cpu...8GB.........$0.00006/sec)</option>
-      <option value="l3">L3   (8cpu...16GB........$0.00012/sec)</option>
-    </select>
-  </f:entry> 
+    <f:entry name="size" title="Container Size" field="size">
+        <f:select default="s4"/>
+    </f:entry>
 
     <f:entry title="Force pull" field="forcePull">
         <f:checkbox/>
