@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>2.7</version>
+    </parent>
+
+    <groupId>sh.hyper.plugins</groupId>
+    <artifactId>hyper-slaves</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>hpi</packaging>
+
+    <name>Hyper_ Slaves Plugin</name>
+    <description>Run builds inside Hyper_ container</description>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Hyper_+Slaves+Plugin</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>YaoZengzeng</id>
+            <name>Zengzeng Yao</name>
+            <email>yaozengzeng@zju.edu.cn</email>
+        </developer>
+        <developer>
+            <id>xlgao-zju</id>
+            <name>Xianglin Gao</name>
+            <email>xlgao@zju.edu.cn</email>
+        </developer>
+        <developer>
+            <id>Jimmy-Xu</id>
+            <name>Jimmy Xu</name>
+            <email>xjimmyshcn@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <jenkins.version>2.7.2</jenkins.version>
+        <findbugs.failOnError>false</findbugs.failOnError>
+        <java.level>8</java.level>
+        <jenkins-test-harness.version>2.14</jenkins-test-harness.version>
+    </properties>
+
+    <scm>
+        <connection>scm:git:git://github.com/jenkinsci/hyper-slaves-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/hyper-slaves-plugin.git</developerConnection>
+        <url>https://github.com/jenkinsci/hyper-slaves-plugin</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-step-api</artifactId>
+            <version>2.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-support</artifactId>
+            <version>1.13</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>sh.hyper.plugins</groupId>
+            <artifactId>hyper-commons</artifactId>
+            <version>0.1.3</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
