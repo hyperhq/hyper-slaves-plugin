@@ -69,14 +69,15 @@ public class CliHyperDriver implements ContainerDriver {
     }
 
     @Override
-    public ContainerInstance createAndLaunchSlaveContainer(final SlaveComputer computer, Launcher launcher, String image) throws IOException, InterruptedException {
+    public ContainerInstance createAndLaunchSlaveContainer(final SlaveComputer computer, Launcher launcher, String image, String size) throws IOException, InterruptedException {
+        String sizeFlag = "--size=" + size;
         String rootUrl = Jenkins.getActiveInstance().getRootUrl();
         String downloadSlaveJarCmd = "wget " + rootUrl + "/jnlpJars/slave.jar -O slave.jar";
         String jnlpConnectCmd = "java -jar slave.jar " + "-jnlpUrl " + rootUrl + "/" + computer.getUrl() + "/slave-agent.jnlp " + "-secret " + computer.getJnlpMac();
         String startCmd = "/bin/sh -c '" + downloadSlaveJarCmd + " ; " + jnlpConnectCmd + "'";
         ArgumentListBuilder args = new ArgumentListBuilder()
                 .add("run", "-d")
-                .add("--size=m1")
+                .add(sizeFlag)
                 //.add("--workdir", HyperSlave.SLAVE_ROOT)
                 .add(image)
                 .add("/bin/sh", "-c")

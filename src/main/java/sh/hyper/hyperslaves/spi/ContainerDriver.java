@@ -35,7 +35,7 @@ public interface ContainerDriver {
 
     boolean hasContainer(Launcher launcher, String id) throws IOException, InterruptedException;
 
-    ContainerInstance createAndLaunchSlaveContainer(final SlaveComputer computer, Launcher launcher, String image) throws IOException, InterruptedException;
+    ContainerInstance createAndLaunchSlaveContainer(final SlaveComputer computer, Launcher launcher, String image, String size) throws IOException, InterruptedException;
 
     Proc execInSlaveContainer(Launcher launcher, String containerId, Launcher.ProcStarter starter) throws IOException, InterruptedException;
 

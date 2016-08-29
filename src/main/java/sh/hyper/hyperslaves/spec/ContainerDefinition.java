@@ -33,4 +33,5 @@ import java.io.IOException;
 public abstract class ContainerDefinition extends AbstractDescribableImpl<ContainerDefinition> {
 
     public abstract String getImage(ContainerDriver driver, TaskListener listener) throws IOException, InterruptedException;
+    public abstract String getSize();
 }

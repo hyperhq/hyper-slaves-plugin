@@ -37,17 +37,26 @@ public class ImageIdContainerDefinition extends ContainerDefinition {
 
     private final String image;
 
+    private final String size;
+
     private final boolean forcePull;
 
     @DataBoundConstructor
-    public ImageIdContainerDefinition(String image, boolean forcePull) {
+    public ImageIdContainerDefinition(String image, String size, boolean forcePull) {
         this.image = image;
+        this.size = size;
         this.forcePull = forcePull;
+    }
+
+    @Override
+    public String getSize() {
+        return size;
     }
 
     public String getImage() {
         return image;
     }
+
 
     @Override
     public String getImage(ContainerDriver driver, TaskListener listener) throws IOException, InterruptedException {

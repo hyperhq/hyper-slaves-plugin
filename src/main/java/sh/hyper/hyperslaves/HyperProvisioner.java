@@ -71,7 +71,8 @@ public class HyperProvisioner {
         }
 
         String buildImage = spec.getBuildHostImage().getImage(driver, listener);
-        final ContainerInstance slaveContainer = driver.createAndLaunchSlaveContainer(computer, launcher, buildImage);
+        String containerSize = spec.getBuildHostImage().getSize();
+        final ContainerInstance slaveContainer = driver.createAndLaunchSlaveContainer(computer, launcher, buildImage, containerSize);
         context.setSlaveContainer(slaveContainer);
     }
 
