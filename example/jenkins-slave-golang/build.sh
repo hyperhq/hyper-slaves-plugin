@@ -2,9 +2,50 @@
 
 set -e
 
-image="hyperhq/jenkins-slave-golang"
-docker build -t ${image}:1.6 .
-docker push ${image}:1.6
+repo="hyperhq/jenkins-slave-golang"
+tag=1.6
+image=${repo}:${tag}
 
-docker tag ${image}:1.6 ${image}:latest
-docker push ${image}:latest
+
+
+function build(){
+    echo "starting build..."
+    echo "=============================================================="
+    docker build -t ${image} .
+}
+
+function push(){
+
+    echo -e "\nstarting push [${image}] ..."
+    echo "=============================================================="
+    docker push ${image}
+
+    echo -e "\nstarting push [${repo}:latest] ..."
+    echo "=============================================================="
+    docker tag ${image} ${repo}:latest
+    docker push ${repo}:latest
+}
+
+
+case "$1" in
+    "push")
+        build
+        push
+        ;;
+    "")
+        build
+        ;;
+    *)
+        cat <<EOF
+usage:
+    ./build.sh             # build only
+    ./build.sh push        # build and push
+EOF
+    exit 1
+        ;;
+esac
+
+
+
+echo -e "\n=============================================================="
+echo "Done!"

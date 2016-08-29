@@ -2,9 +2,50 @@
 
 set -e
 
-image="hyperhq/jenkins-slave-centos"
-docker build -t ${image}:7.2 .
-docker push ${image}:7.2
+repo="hyperhq/jenkins-slave-centos"
+tag=7.2
+image=${repo}:${tag}
 
-docker tag ${image}:7.2 ${image}:latest
-docker push ${image}:latest
+
+
+function build(){
+    echo "starting build..."
+    echo "=============================================================="
+    docker build -t ${image} .
+}
+
+function push(){
+
+    echo -e "\nstarting push [${image}] ..."
+    echo "=============================================================="
+    docker push ${image}
+
+    echo -e "\nstarting push [${repo}:latest] ..."
+    echo "=============================================================="
+    docker tag ${image} ${repo}:latest
+    docker push ${repo}:latest
+}
+
+
+case "$1" in
+    "push")
+        build
+        push
+        ;;
+    "")
+        build
+        ;;
+    *)
+        cat <<EOF
+usage:
+    ./build.sh             # build only
+    ./build.sh push        # build and push
+EOF
+    exit 1
+        ;;
+esac
+
+
+
+echo -e "\n=============================================================="
+echo "Done!"
