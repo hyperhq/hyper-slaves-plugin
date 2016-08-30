@@ -73,7 +73,7 @@ public class CliHyperDriver implements ContainerDriver {
         String sizeFlag = "--size=" + size;
         String rootUrl = Jenkins.getInstance().getRootUrl();
         String jenkinsUrl = rootUrl + "/jnlpJars/slave.jar";
-        String downloadSlaveJarCmd = String.format("which wget >/dev/null 2>&1 && wget %s -O slave.jar || (which curl && curl %s -O || echo skip download slave.jar)", jenkinsUrl, jenkinsUrl);
+        String downloadSlaveJarCmd = String.format("wget %s -O slave.jar && echo wget OK || (curl %s -O && echo curl OK || echo skip download slave.jar)", jenkinsUrl, jenkinsUrl);
         String jnlpConnectCmd = String.format("java -jar slave.jar -jnlpUrl %s/%s/slave-agent.jnlp -secret %s", rootUrl, computer.getUrl(), computer.getJnlpMac());
         String startCmd = "/bin/sh -c '" + downloadSlaveJarCmd + " ; " + jnlpConnectCmd + "'";
         ArgumentListBuilder args = new ArgumentListBuilder()

@@ -17,9 +17,10 @@ This plugin allows to execute a jenkins job inside [`Hyper_`](https://hyper.sh) 
 		- [View Build Result](#view-build-result)
 		- [View Slave node log](#view-slave-node-log)
 		- [View build container](#view-build-container)
+	- [Debug](#debug)
+		- [Example](#example)
 
 <!-- /TOC -->
-
 # Architecture
 ![](image/hyper.png)
 
@@ -81,3 +82,23 @@ Click `Build Now`
 ![](image/build-container-info.png)
 
 ![](image/build-container-log.png)
+
+## Debug
+
+If job failed, please check the following log:  
+- Check the “Console Output” in “Build history” of Job
+- Check the Node log
+- Check the Hyper_ container log by execute “hyper logs <container_id>”
+
+### Example
+
+Check the `Consle Output`  
+![](image/debug-console-output.png)
+
+Then check the Node log(`this will be deleted after job finished`)  
+![](image/debug-node-log.png)
+
+The cause maybe Hyper_ container size is too small, or slave agent start failed.
+
+You can check the Hyper_ container log like this:  
+![](image/debug-hyper-container-log.png)
