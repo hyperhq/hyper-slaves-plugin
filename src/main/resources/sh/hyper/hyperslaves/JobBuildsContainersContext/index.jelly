@@ -28,16 +28,12 @@
         <l:main-panel>
 
             <h1>
-                <l:icon src="${app.rootUrl}/plugin/docker-slaves/images/48x48/hyper-logo.png"/>
-                Containers used for this build
+                <l:icon src="${app.rootUrl}/plugin/hyper-slaves/images/48x48/hyper-logo.png"/>
+                Container used for this build
             </h1>
 
             <ul>
-                <li>jenkins agent : ${it.remotingContainer.id} (${it.remotingContainer.imageName})</li>
-                <li>main build container : ${it.buildContainer.id} (${it.buildContainer.imageName})</li>
-                <j:forEach var="container" items="${it.sideContainers}">
-                    <li>${container.key} : ${container.value.id} (${container.value.imageName})</li>
-                </j:forEach>
+                <li>build container : ${it.slaveContainer.id} (${it.slaveContainer.imageName})</li>
             </ul>
 
         </l:main-panel>

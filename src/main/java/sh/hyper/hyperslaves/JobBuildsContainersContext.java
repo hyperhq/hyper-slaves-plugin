@@ -59,11 +59,11 @@ public class JobBuildsContainersContext implements BuildBadgeAction {
 
     @Override
     public String getDisplayName() {
-        return "Docker Build Context";
+        return "Hyper Build Context";
     }
 
     @Override
     public String getUrlName() {
-        return "docker";
+        return "hyper";
     }
 }

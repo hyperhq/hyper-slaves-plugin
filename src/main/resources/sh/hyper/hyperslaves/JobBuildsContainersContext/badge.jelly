@@ -26,6 +26,6 @@
 
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
-    <img title="Built inside Docker container"
+    <img title="Built inside Hyper container"
          src="${rootURL}/plugin/hyper-slaves/images/16x16/hyper-logo.png"/>
 </j:jelly>
