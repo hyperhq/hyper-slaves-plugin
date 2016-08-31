@@ -65,6 +65,7 @@ public class HyperComputer extends OneShotComputer {
     protected void terminate() {
         LOGGER.info("Stopping Docker Slave after build completion");
         setAcceptingTasks(false);
+        super.terminate();
         try {
             provisioner.clean();
         } catch (InterruptedException e) {
@@ -72,7 +73,6 @@ public class HyperComputer extends OneShotComputer {
         } catch (IOException e) {
             e.printStackTrace(); //FIXME
         }
-        super.terminate();
     }
 
     public HyperProvisioner getProvisioner() {
