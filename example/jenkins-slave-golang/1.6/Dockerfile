@@ -15,8 +15,8 @@ ENV PATH $PATH:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
 ##########################################
 ##        prepare golang run env        ##
 ##########################################
-RUN yum install -y go
-RUN yum install -y git
+RUN yum install -y make git go
+RUN yum install -y which
 ENV GOPATH /home/jenkins
 ENV PATH $PATH:$GOPATH/bin
 
