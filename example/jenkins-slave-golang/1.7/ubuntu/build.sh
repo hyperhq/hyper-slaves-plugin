@@ -3,7 +3,7 @@
 set -e
 
 repo="hyperhq/jenkins-slave-golang"
-tag=1.7
+tag=1.7-ubuntu
 image=${repo}:${tag}
 
 
@@ -19,11 +19,6 @@ function push(){
     echo -e "\nstarting push [${image}] ..."
     echo "=============================================================="
     docker push ${image}
-
-    echo -e "\nstarting push [${repo}:latest] ..."
-    echo "=============================================================="
-    docker tag ${image} ${repo}:latest
-    docker push ${repo}:latest
 }
 
 
