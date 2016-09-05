@@ -120,10 +120,10 @@ public abstract class OneShotSlave extends Slave implements EphemeralNode {
             throw new IllegalStateException("running task without associated executor thread");
         }
 
-        final long launchTime = System.currentTimeMillis();
         try {
             realLauncher.launch(this.getComputer(), listener);
 
+            final long launchTime = System.currentTimeMillis();
             while (getComputer().isActuallyOffline()
                     && TimeUnit2.SECONDS.toMillis(launchTimeout) > System.currentTimeMillis() - launchTime) {
                 Thread.sleep(1000);
