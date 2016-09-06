@@ -44,7 +44,6 @@
 
     <properties>
         <jenkins.version>2.7.2</jenkins.version>
-        <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <jenkins-test-harness.version>2.14</jenkins-test-harness.version>
     </properties>
