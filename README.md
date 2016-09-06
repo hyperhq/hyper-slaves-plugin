@@ -7,6 +7,7 @@ This plugin allows to execute a jenkins job inside [`Hyper_`](https://hyper.sh) 
 
 - [Architecture](#architecture)
 - [Dependency](#dependency)
+- [About Image](#about-image)
 - [Usage](#usage)
 	- [Config](#config)
 		- [Enable JNLP](#enable-jnlp)
@@ -21,6 +22,7 @@ This plugin allows to execute a jenkins job inside [`Hyper_`](https://hyper.sh) 
 		- [Example](#example)
 
 <!-- /TOC -->
+
 # Architecture
 ![](image/hyper.png)
 
@@ -28,9 +30,17 @@ This plugin allows to execute a jenkins job inside [`Hyper_`](https://hyper.sh) 
 - [hyper-commons-plugin](https://github.com/jenkinsci/hyper-commons-plugin)
 - Hyper_ credential (get from https://console.hyper.sh)
 - Jenkins Server should have `public ip`
-- build image should contain `wget`/`curl` and `java`
-  - `wget`/`curl`(optional): download slave.jar from jenkins master. This ensures that slave agent version matched with the master. Download will be skipped when wget/curl is missing.
-  - `java`(required): run slave agent(slave.jar) to connect Jenkins master through JNLP.
+
+# About Image
+
+You can specify customized build image, but it should contain `java` and `wget`/`curl`
+- `java`(required): run slave agent(slave.jar) to connect Jenkins master through JNLP.
+- `wget`/`curl`(optional): download slave.jar from jenkins master. This ensures that slave agent version matched with the master. Download will be skipped when wget/curl is missing.
+
+Several recommend base images:
+- openjdk:8-jdk
+- jenkinsci/slave
+- hyperhq/jenkins-slave-golang
 
 # Usage
 

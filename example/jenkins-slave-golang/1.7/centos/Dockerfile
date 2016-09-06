@@ -48,7 +48,7 @@ ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 RUN mkdir -p $GOPATH
 
 ##########################################
-RUN yum install -y make git which
+RUN yum install -y make git which gcc
 
 WORKDIR $HOME
 USER root

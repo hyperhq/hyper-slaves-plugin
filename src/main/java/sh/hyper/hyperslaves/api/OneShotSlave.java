@@ -126,7 +126,7 @@ public abstract class OneShotSlave extends Slave implements EphemeralNode {
             final long launchTime = System.currentTimeMillis();
             while (getComputer().isActuallyOffline()
                     && TimeUnit2.SECONDS.toMillis(launchTimeout) > System.currentTimeMillis() - launchTime) {
-                Thread.sleep(1000);
+                this.wait(1000);
             }
 
             if (getComputer().isActuallyOffline()) {
