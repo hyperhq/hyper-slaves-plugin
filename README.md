@@ -1,3 +1,7 @@
+#Deprecated
+Moved to https://github.com/jenkinsci/hyper-slaves-plugin
+
+
 Hyper_ Slaves Plugin For Jenkins
 ================================
 
