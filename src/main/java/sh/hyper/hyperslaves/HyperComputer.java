@@ -24,7 +24,7 @@
 
 package sh.hyper.hyperslaves;
 
-import sh.hyper.hyperslaves.api.OneShotComputer;
+import it.dockins.dockerslaves.api.OneShotComputer;
 import hudson.slaves.ComputerLauncher;
 
 import java.io.IOException;

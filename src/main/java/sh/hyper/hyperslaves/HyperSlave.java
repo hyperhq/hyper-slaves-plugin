@@ -33,7 +33,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.model.listeners.RunListener;
 import hudson.slaves.EphemeralNode;
-import sh.hyper.hyperslaves.api.OneShotSlave;
+import it.dockins.dockerslaves.api.OneShotSlave;
 
 import java.io.IOException;
 
