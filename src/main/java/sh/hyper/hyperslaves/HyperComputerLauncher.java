@@ -69,6 +69,18 @@ public class HyperComputerLauncher extends ComputerLauncher {
     public void launch(final HyperComputer computer, TaskListener listener) throws IOException, InterruptedException {
         HyperProvisioner provisioner = computer.createProvisioner();
         provisioner.prepareAndLaunchSlaveContainer(computer, listener);
+
+        // in order to be compatible with docker slaves api, move timeout setting here
+        final long launchTimeout = 20; //seconds
+        final long launchTime = System.currentTimeMillis();
+        while (computer.isActuallyOffline()
+               && TimeUnit2.SECONDS.toMillis(launchTimeout) > System.currentTimeMillis() - launchTime) {
+               Thread.sleep(1000);
+        }
+
+        if (computer.isActuallyOffline()) {
+            throw new IOException("Launch container timeout");
+        }
     }
 
     private String getUtcDate(Date date) {

@@ -73,8 +73,6 @@ public abstract class OneShotSlave extends Slave implements EphemeralNode {
 
     private boolean provisioningFailed = false;
 
-    private long launchTimeout = 20; //seconds
-
     public OneShotSlave(String name, String nodeDescription, String remoteFS, String labelString, ComputerLauncher launcher) throws Descriptor.FormException, IOException {
         super(name, nodeDescription, remoteFS, 1, Mode.EXCLUSIVE, labelString, NOOP_LAUNCHER, RetentionStrategy.NOOP, Collections.<NodeProperty<?>>emptyList());
         this.realLauncher = launcher;
@@ -122,12 +120,6 @@ public abstract class OneShotSlave extends Slave implements EphemeralNode {
 
         try {
             realLauncher.launch(this.getComputer(), listener);
-
-            final long launchTime = System.currentTimeMillis();
-            while (getComputer().isActuallyOffline()
-                    && TimeUnit2.SECONDS.toMillis(launchTimeout) > System.currentTimeMillis() - launchTime) {
-                this.wait(1000);
-            }
 
             if (getComputer().isActuallyOffline()) {
                 provisionFailed(new IllegalStateException("Computer is offline after launch"));
